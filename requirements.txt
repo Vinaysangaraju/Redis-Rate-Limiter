@@ -1,7 +1,10 @@
 flask>=3.0.0
+flask-smorest
+marshmallow
 redis>=5.0.0
 pytest>=8.0.0
 fakeredis>=2.20.0
 gunicorn>=21.0.0
 lupa
 aiohttp
+python-dotenv
