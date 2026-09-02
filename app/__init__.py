@@ -11,18 +11,13 @@ def create_app(config=None) -> Flask:
     
     app = Flask(__name__)
 
-
-    redis_host = os.getenv("REDIS_HOST", "redis")
-    redis_port = int(os.getenv("REDIS_PORT", 6379))
-    redis_db = int(os.getenv("REDIS_DB", 0))
+    redis_url = os.getenv("REDIS_URL")
 
     if redis_client is None:
-        redis_client = redis.Redis(
-            host=redis_host, 
-            port=redis_port, 
-            db=redis_db, 
+        redis_client = redis.Redis.from_url(
+            redis_url,
             decode_responses=True,
-            protocol=2  
+            protocol=2
         )
         limiter = RedisRateLimiter(redis_client)
 
